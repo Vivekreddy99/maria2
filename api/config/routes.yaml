@@ -1,0 +1,32 @@
+index:
+    path: /
+#    controller: App\Controller\DefaultController::index
+
+# Custom routes, not recognized by API Platform
+sku_delete:
+    path: /v2/products/{id}/shop/{shop_id}/sku/{sku}
+    methods: [DELETE]
+    controller: App\Controller\ProductsController::skuDelete
+sku_put:
+    path: /v2/products/{id}/shop/{shop_id}/sku/{sku}
+    methods: [PUT]
+    controller: App\Controller\ProductsController::skuPut
+account:
+    path: /v2/account
+    methods: [GET]
+    controller: App\Controller\UserController::account
+oauth2_post_access_token:
+    path: /oauth
+    methods: [POST]
+    controller: App\Controller\OAuth2Controller::getAccessToken
+oauth2_delete_access_token:
+    path: /oauth/{token}
+    methods: [DELETE]
+    controller: App\Controller\OAuth2Controller::deleteAccessToken
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+fos_oauth_server_authorize:
+    path: /oauth/v2/auth
+    methods: [GET, POST]
+    controller: FOS\OAuthServerBundle\Controller\AuthorizeController::authorizeAction
+    #resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"

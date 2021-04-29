@@ -1,0 +1,35 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# Custom routes that override API Platform, must be called here first.
+order_delete:
+    path: /v2/orders/{id}
+    methods: [DELETE]
+    controller: App\Controller\OrdersController::delete
+order_status_patch:
+    path: /v2/orders/{id}
+    methods: [PATCH]
+    controller: App\Controller\OrdersController::patch
+    requirements: 
+        id: 'status'
+product_delete:
+    path: /v2/products/{id}
+    methods: [DELETE]
+    controller: App\Controller\ProductsController::delete
+returns_post:
+    path: /v2/returns/{id}/verify
+    methods: [POST]
+    controller: App\Controller\ReturnsController::verify
+shipments_delete:
+    path: /v2/shipments/{id}
+    methods: [DELETE]
+    controller: App\Controller\ShipmentsController::delete
+shop_delete:
+    path: /v2/shops/{id}
+    methods: [DELETE]
+    controller: App\Controller\ShopsController::delete
+
+    
+
+

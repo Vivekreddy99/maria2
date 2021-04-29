@@ -1,0 +1,44 @@
+api_platform:
+    title: API BoxC Logistics
+    version: 1.0.0
+    eager_loading:
+        enabled: false
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    oauth:
+        enabled: true
+        # clientId: 'ENTER_HERE_YOUR_CLIENT_ID'
+        # clientSecret: 'ENTER_HERE_YOUR_CLIENT_SECRET'
+        type: 'oauth2'
+        flow: 'password'
+        tokenUrl: '/oauth/v2/token'
+        authorizationUrl: '/oauth/v2/auth'
+        scopes: ['client_credentials']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
+    # Mercure integration, remove if unwanted
+    mercure:
+        hub_url: '%env(MERCURE_SUBSCRIBE_URL)%'
+    collection:
+        pagination:
+            client_items_per_page: true # Disabled by default
+            items_per_page_parameter_name: limit # Default value
+            maximum_items_per_page: 100
+    exception_to_status:
+        # The 4 following handlers are registered by default, keep those lines to prevent unexpected side effects
+        # Symfony\Component\Serializer\Exception\ExceptionInterface: 400 # Use a raw status code (recommended)
+        # ApiPlatform\Core\Exception\InvalidArgumentException: !php/const Symfony\Component\HttpFoundation\Response::HTTP_BAD_REQUEST
+        # ApiPlatform\Core\Exception\FilterValidationException: 400
+        # Doctrine\ORM\OptimisticLockException: 409
+        
+        # Custom mapping
+        App\Exception\TooManyPackagesException: 400
+    show_webby: false
+    enable_profiler: true
+    
+    # Allow using plain IDs for JSON format
+    allow_plain_identifiers: true
+        
+        
